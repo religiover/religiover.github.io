@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-
         /* =========================================
            CONFIGURAÇÕES GERAIS E DE SEGURANÇA
            ========================================= */
@@ -28,6 +27,21 @@
             user-select: none; /* Padrão */
         }
 
+        /* CUSTOM SCROLLBAR (Para deixar o site mais vivo/interativo) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00e676; /* Destaque verde ao rolar */
+        }
+
         /* VARIÁVEIS GERAIS (CORES E FONTES) */
         :root {
             --black-pure: #000000;
@@ -36,6 +50,7 @@
             --gray-dark: #2a2a2a;
             --gray-text: #a0a0a0;
             --white-pure: #ffffff;
+            --green-gamer: #00e676; /* Verde claro estilo Play */
             
             --font-title: 'Oswald', sans-serif;
             --font-body: 'Merriweather', serif;
@@ -91,11 +106,12 @@
             text-decoration: none;
             color: var(--white-pure);
             font-family: var(--font-ui);
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         a:hover {
-            color: var(--gray-text);
+            color: var(--white-pure);
+            text-shadow: 0 0 8px rgba(255,255,255,0.5); /* Efeito interativo nos links */
         }
 
         /* =========================================
@@ -114,6 +130,7 @@
             height: 80px;
             display: flex;
             align-items: center;
+            transition: background-color 0.3s ease;
         }
 
         .nav-container {
@@ -129,6 +146,12 @@
             font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
 
         .nav-links {
@@ -142,6 +165,23 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+        }
+
+        /* Efeito de sublinhado interativo na navbar */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--green-gamer);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .hamburger {
@@ -189,6 +229,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            animation: fadeInDown 1s ease-out;
         }
 
         .hero-content p {
@@ -196,6 +237,7 @@
             color: var(--white-pure);
             font-family: var(--font-ui);
             font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         /* Redes Sociais no Hero */
@@ -204,16 +246,18 @@
             display: flex;
             gap: 20px;
             justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .hero-social a {
             font-size: 2rem;
             color: var(--white-pure);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .hero-social a:hover {
-            transform: scale(1.2);
+            transform: scale(1.3) translateY(-5px);
+            color: var(--green-gamer);
         }
 
         /* SEÇÃO SOBRE NÓS */
@@ -240,9 +284,15 @@
             position: absolute;
             width: 50%;
             height: 3px;
-            background-color: var(--white-pure);
+            background-color: var(--green-gamer); /* Trazendo a cor de destaque para os títulos */
             bottom: -10px;
             left: 25%;
+            transition: width 0.4s ease, left 0.4s ease;
+        }
+
+        .section-title:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         /* SEÇÃO DE PAUTAS (Manifesto e Cards) */
@@ -265,18 +315,26 @@
             border: 1px solid var(--gray-dark);
             padding: 50px 30px;
             text-align: center;
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
             height: 100%;
+            border-radius: 8px; /* Leve arredondamento para design mais fluido */
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--white-pure); /* Destaque minimalista */
+            transform: translateY(-15px);
+            border-color: var(--green-gamer); 
+            box-shadow: 0 15px 30px rgba(0, 230, 118, 0.1);
         }
 
         .card-icon {
             font-size: 3rem;
             margin-bottom: 25px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            color: var(--green-gamer);
+            transform: scale(1.2);
         }
 
         .manifesto-texto {
@@ -296,12 +354,15 @@
             border: 1px solid var(--gray-dark);
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
             height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .ebook-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
             border-color: var(--gray-text);
         }
 
@@ -310,6 +371,11 @@
             aspect-ratio: 3/4;
             object-fit: cover;
             border-bottom: 1px solid var(--gray-dark);
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-card:hover .ebook-cover {
+            transform: scale(1.05); /* Efeito de zoom na capa ao focar */
         }
 
         .ebook-info {
@@ -319,32 +385,61 @@
             flex-direction: column;
             justify-content: space-between;
             flex-grow: 1;
+            background-color: var(--black-card);
+            z-index: 2;
         }
 
-        /* BOTÃO DE COMPRA DA KIWIFY */
+        /* BOTÃO DE COMPRA DA KIWIFY (ESTILO GAMER / PLAY) */
         .btn-comprar {
             margin-top: 20px;
             padding: 15px;
-            background-color: var(--white-pure);
+            background-color: var(--green-gamer);
             color: var(--black-pure);
             font-family: var(--font-title);
             text-transform: uppercase;
             font-weight: 700;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Espaço para o ícone */
             transition: all 0.3s ease;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-comprar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
         }
 
         .btn-comprar:hover {
-            background-color: var(--gray-text);
+            background-color: #00ff88;
+            transform: scale(1.05);
+            color: var(--black-pure);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.6), 0 0 40px rgba(0, 230, 118, 0.2);
         }
 
-        /* SEÇÃO LOJA (Em Breve com Animação) */
+        .btn-comprar:hover::before {
+            left: 100%;
+        }
+
+        /* SEÇÃO LOJA (Em Breve Melhorado com Glassmorphism e Animações) */
         #loja {
             padding: 150px 0;
-            background-color: var(--black-surface);
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--black-surface) 100%);
             text-align: center;
             border-top: 1px solid var(--gray-dark);
             border-bottom: 1px solid var(--gray-dark);
+            position: relative;
+            overflow: hidden;
         }
 
         .loja-container {
@@ -352,34 +447,76 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Cartão flutuante estilizado */
+        .loja-glass-card {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .loja-glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 230, 118, 0.1);
+            border-color: rgba(0, 230, 118, 0.2);
         }
 
         .loja-icon {
             font-size: 4rem;
             margin-bottom: 20px;
-            color: var(--gray-text);
+            color: var(--white-pure);
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Animação Pulsante para o "Em Breve" */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); color: var(--green-gamer); text-shadow: 0 0 15px rgba(0,230,118,0.5); }
+        }
+
         .em-breve-text {
             font-size: 4rem;
             font-family: var(--font-title);
             text-transform: uppercase;
             color: var(--white-pure);
             letter-spacing: 5px;
-            animation: pulse-glow 2s infinite alternate;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
 
-        @keyframes pulse-glow {
-            0% {
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-                opacity: 0.7;
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
-                opacity: 1;
-                transform: scale(1.05);
-            }
+        /* Barra de loading interativa / futurista */
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background-color: var(--black-pure);
+            border-radius: 2px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-fill {
+            position: absolute;
+            height: 100%;
+            background-color: var(--green-gamer);
+            box-shadow: 0 0 10px var(--green-gamer);
+            animation: loadingIndeterminate 2.5s infinite ease-in-out;
+        }
+
+        @keyframes loadingIndeterminate {
+            0% { width: 0%; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0%; left: 100%; }
         }
 
         /* FOOTER (RODAPÉ) */
@@ -391,6 +528,7 @@
 
         .footer-brand h3 {
             font-size: 2.5rem;
+            letter-spacing: 2px;
         }
 
         .footer-bottom {
@@ -401,11 +539,21 @@
             font-family: var(--font-ui);
         }
 
-        /* CLASSES UTILITÁRIAS (ANIMAÇÕES SCROLL) */
+        /* CLASSES UTILITÁRIAS (ANIMAÇÕES GERAIS) */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .fade-in.visible {
@@ -418,12 +566,10 @@
            ========================================= */
         @media (max-width: 768px) {
             
-            /* Ajuste de espaçamento para ganhar área útil na tela pequena */
             .container {
-                padding: 0 12px;
+                padding: 0 15px;
             }
 
-            /* Redução Global de Letras no Mobile */
             p {
                 font-size: 0.95rem !important; 
             }
@@ -433,7 +579,6 @@
                 margin-bottom: 20px;
             }
 
-            /* Navbar Mobile */
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -452,7 +597,6 @@
                 display: block;
             }
 
-            /* Hero Mobile */
             .hero-content h1 {
                 font-size: 2.8rem;
             }
@@ -463,7 +607,7 @@
             /* GRIDS 3x1 NO MOBILE: Forçando o layout lado a lado */
             .grids-3 {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 12px; /* Reduz o buraco entre os cards para eles caberem */
+                gap: 12px;
                 margin-top: 30px;
             }
 
@@ -487,7 +631,7 @@
 
             /* Ajustes Finos nos Cards de EBOOKS para caber no 3x1 */
             .ebook-info {
-                padding: 10px 6px;
+                padding: 15px 8px;
             }
             .ebook-info h3 {
                 font-size: 0.75rem;
@@ -495,7 +639,7 @@
                 letter-spacing: 0;
             }
             .btn-comprar {
-                padding: 8px 4px;
+                padding: 10px 4px;
                 font-size: 0.7rem;
                 margin-top: auto;
             }
@@ -506,6 +650,9 @@
             }
             .loja-icon {
                 font-size: 3rem;
+            }
+            .loja-glass-card {
+                padding: 40px 20px;
             }
         }
     </style>
@@ -602,51 +749,39 @@
                 <p style="margin-top: 10px;">Obras estratégicas para o desenvolvimento intelectual e o embate cético.</p>
             </div>
 
-            <!-- GRID DOS EBOOKS -->
+            <!-- GRID DOS EBOOKS (Substituídos pelos 3 solicitados) -->
             <div class="grids-3">
                 
-                <!-- LIVRO NOVO (ADICIONADO EM PRIMEIRO) -->
-                <div class="ebook-card fade-in">
-                    <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/quem-criou-deus-kiwify_c117cc6c4a074db9a1b467d2adc22edd.jpeg" alt="Quem Criou Deus?" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=QUEM+CRIOU+DEUS'">
-                    <div class="ebook-info">
-                        <h3>QUEM CRIOU DEUS?</h3>
-                        <a href="https://pay.kiwify.com.br/9suFJCC" target="_blank" class="btn-comprar">Comprar</a>
-                    </div>
-                </div>
-
                 <!-- LIVRO 1 -->
                 <div class="ebook-card fade-in">
-                    <img src="https://aws-assets.kiwify.com.br/cdn-cgi/image/fit=scale-down,width=600/iWRlDEE5hlcksuA/1000070140_11bc59454a65445995425be2743da2f8.png" alt="Amém Pra Quem?" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=AM%C3%89M+PRA+QUEM'">
+                    <div style="overflow: hidden;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/cristianismo-s.a_02e4355a25114b40bc110ca269c1536f.jpeg" alt="Cristianismo S.A." class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=CRISTIANISMO+S.A.'">
+                    </div>
                     <div class="ebook-info">
-                        <h3>AMÉM PRA QUEM?</h3>
-                        <a href="https://pay.kiwify.com.br/kEiuOHZ" target="_blank" class="btn-comprar">Comprar</a>
+                        <h3>CRISTIANISMO S.A.</h3>
+                        <a href="https://pay.kiwify.com.br/Dq0bUT7" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
                     </div>
                 </div>
 
                 <!-- LIVRO 2 -->
                 <div class="ebook-card fade-in">
-                    <img src="https://aws-assets.kiwify.com.br/cdn-cgi/image/fit=scale-down,width=600/iWRlDEE5hlcksuA/1000062020_82e5825cb82841d48d4abdbf362d3778.jpg" alt="Como Debater Com Crente" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=COMO+DEBATER'">
+                    <div style="overflow: hidden;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/mafia-do-dizimo_e6e3e30141d84a22a335a4632bea7aca.jpeg" alt="A Máfia do Dízimo" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=MÁFIA+DO+DÍZIMO'">
+                    </div>
                     <div class="ebook-info">
-                        <h3>COMO DEBATER COM CRENTE</h3>
-                        <a href="https://pay.kiwify.com.br/MNQVMaU" target="_blank" class="btn-comprar">Comprar</a>
+                        <h3>A MÁFIA DO DÍZIMO</h3>
+                        <a href="https://pay.kiwify.com.br/ZLMUDSc" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
                     </div>
                 </div>
 
                 <!-- LIVRO 3 -->
                 <div class="ebook-card fade-in">
-                    <img src="https://aws-assets.kiwify.com.br/cdn-cgi/image/fit=scale-down,width=600/iWRlDEE5hlcksuA/1000064954_830156b1cade43baa241bb68e753e820.jpg" alt="Deus Realmente Existe?" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=DEUS+EXISTE'">
-                    <div class="ebook-info">
-                        <h3>DEUS REALMENTE EXISTE?</h3>
-                        <a href="https://pay.kiwify.com.br/16qYa6D" target="_blank" class="btn-comprar">Comprar</a>
+                    <div style="overflow: hidden;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/evangelistao_308de3a440bd40b4941f566f86d95672.jpeg" alt="Sobrevivendo ao Evangelistão" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=SOBREVIVENDO+AO+EVANGELISTÃO'">
                     </div>
-                </div>
-                
-                <!-- LIVRO 4 -->
-                <div class="ebook-card fade-in">
-                    <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/Duck-ai-image-2026-07-11-04-25_6da36f5bf61b47ee8b52be70cf000ded.jpeg" alt="Jogando Xadrez com Pombo" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=JOGANDO+XADREZ+COM+POMBO'">
                     <div class="ebook-info">
-                        <h3>JOGANDO XADREZ COM POMBO</h3>
-                        <a href="https://pay.kiwify.com.br/DJzH37x" target="_blank" class="btn-comprar">Comprar</a>
+                        <h3>SOBREVIVENDO AO EVANGELISTÃO</h3>
+                        <a href="https://pay.kiwify.com.br/ipb0t3N" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
                     </div>
                 </div>
 
@@ -654,12 +789,19 @@
         </div> <!-- Fechamento do container principal de ebooks -->
     </section>
 
-    <!-- SEÇÃO LOJA FÍSICA / MERCH -->
+    <!-- SEÇÃO LOJA FÍSICA / MERCH (Atualizada para mais interativa) -->
     <section id="loja">
         <div class="container loja-container fade-in">
-            <i class="fas fa-shopping-bag loja-icon"></i>
-            <h2 class="em-breve-text">Em Breve</h2>
-            <p style="margin-top: 20px; font-size: 1.2rem;">Roupas, acessórios e manifesto para vestir o seu ceticismo.</p>
+            <div class="loja-glass-card">
+                <i class="fas fa-lock loja-icon"></i>
+                <h2 class="em-breve-text">Em Breve</h2>
+                <p style="margin-top: 10px; font-size: 1.1rem; color: var(--gray-text);">
+                    Nossa loja oficial está sendo forjada. Roupas, acessórios e manifesto para vestir o seu ceticismo.
+                </p>
+                <div class="loading-bar">
+                    <div class="loading-fill"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -696,7 +838,7 @@
             });
         });
 
-        // 3. LÓGICA DE FADE-IN (Aparecer ao rolar a página)
+        // 3. LÓGICA DE FADE-IN (Aparecer ao rolar a página com animação mais fluida)
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = {
             threshold: 0.15,
