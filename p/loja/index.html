@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELIGIOVER Shop</title>
+
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+    <meta name="description" content="Sem deuses, sem dogmas.">
+    <meta property="og:title" content="RELIGIOVER Shop">
+    <meta property="og:description" content="Sem deuses, sem dogmas.">
+    <meta property="og:type" content="website">
+
+    <!-- Fontes Underground / Zine -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Oswald:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Font Awesome 6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-surface: #0a0a0a;
+            --bg-card: #0d0d0d;
+            --border-pure: #ffffff;
+            --border-subtle: #262626;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gray-medium: #666666;
+            --font-main: 'Space Mono', monospace;
+            --font-title: 'Oswald', sans-serif;
+            --font-ui: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #000000; border-left: 1px solid #333333; }
+        ::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        /* 1. BARRA DE BENEFÍCIOS */
+        .top-benefits {
+            background-color: #000000;
+            border-bottom: 2px solid var(--border-pure);
+            padding: 10px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-ui);
+            font-weight: 600;
+        }
+
+        .top-benefits span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-benefits i {
+            color: var(--text-primary);
+        }
+
+        /* 2. NAVBAR BRUTALISTA */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--border-pure);
+            padding: 14px 24px;
+        }
+
+        .navbar-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #000;
+            background-color: #fff;
+            padding: 2px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #fff;
+            transition: all 0.2s ease;
+        }
+
+        .logo:hover {
+            background-color: #000;
+            color: #fff;
+            box-shadow: 4px 4px 0px #fff;
+        }
+
+        .logo span {
+            font-size: 0.7rem;
+            background-color: #000;
+            color: #fff;
+            padding: 2px 6px;
+            letter-spacing: 1px;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            border: 1px solid #fff;
+        }
+
+        .logo:hover span {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            font-family: var(--font-ui);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #000;
+            background-color: #fff;
+        }
+
+        /* Botão Voltar */
+        .btn-voltar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border: 2px solid var(--border-pure);
+            border-radius: 0;
+            color: var(--text-primary);
+            background-color: #000;
+            font-family: var(--font-ui);
+            transition: all 0.2s ease;
+        }
+
+        .btn-voltar:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px var(--gray-medium);
+        }
+
+        /* 3. BANNER HERO */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), 
+                              url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--border-pure);
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 0;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            font-family: var(--font-ui);
+            border: 2px solid #fff;
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 4px 4px 0px #222;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: #000;
+            background-color: #fff;
+            display: inline-block;
+            padding: 4px 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: var(--font-main);
+            text-transform: uppercase;
+        }
+
+        /* 4. VITRINE DE PRODUTOS */
+        .products-section {
+            max-width: 1320px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-subtle);
+        }
+
+        .dropdown-sort {
+            background-color: #000;
+            border: 2px solid var(--border-pure);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            font-family: var(--font-main);
+            text-transform: uppercase;
+        }
+
+        .dropdown-sort option {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .category-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill-btn {
+            background: none;
+            border: 2px solid var(--border-pure);
+            color: var(--text-primary);
+            padding: 6px 16px;
+            border-radius: 0;
+            font-size: 0.8rem;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill-btn:hover, .pill-btn.active {
+            background-color: #fff;
+            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px var(--gray-medium);
+        }
+
+        /* GRID DE PRODUTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-pure);
+            border-radius: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 8px 8px 0px #fff;
+        }
+
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background-color: #050505;
+            border-bottom: 2px solid var(--border-pure);
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image-container img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.03);
+        }
+
+        .product-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            min-height: 42px;
+            font-family: var(--font-ui);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .product-installments {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-family: var(--font-main);
+        }
+
+        .btn-card {
+            margin-top: auto;
+            padding: 12px 16px;
+            border-radius: 0;
+            background-color: #fff;
+            color: #000;
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #fff;
+            transition: all 0.2s ease;
+        }
+
+        .btn-card:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* 5. FOOTER */
+        footer {
+            background-color: #000000;
+            border-top: 2px solid var(--border-pure);
+            padding: 70px 20px 30px 20px;
+            margin-top: 100px;
+        }
+
+        .footer-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 2fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-family: var(--font-title);
+            border-bottom: 2px solid var(--border-subtle);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--font-ui);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col ul a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .badge-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 30px;
+            background: #000;
+            border: 1px solid #fff;
+            border-radius: 0;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0;
+            background-color: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px var(--gray-medium);
+        }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px dashed var(--gray-medium);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            gap: 15px;
+            font-family: var(--font-main);
+        }
+
+        .footer-bottom a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-benefits {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Benefícios -->
+    <aside class="top-benefits">
+        <span><i class="fas fa-credit-card"></i> Parcele em até 6x sem juros</span>
+        <span><i class="fas fa-box"></i> Primeira troca sem custo</span>
+        <span><i class="fas fa-shield-alt"></i> Compra 100% segura</span>
+    </aside>
+
+    <!-- 2. Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="brand-wrapper">
+                <a href="../../index.html" class="logo">
+                    RELIGIOVER <span>SHOP</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#produtos" class="active">Produtos</a></li>
+            </ul>
+
+            <!-- Botão Voltar ao site principal -->
+            <a href="https://religiover.github.io/" class="btn-voltar">
+                <i class="fas fa-arrow-left"></i> Voltar ao site principal
+            </a>
+        </div>
+    </nav>
+
+    <!-- 3. Banner Hero Único -->
+    <header class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-tag">Exclusivos</span>
+            <h1 class="hero-title">RELIGIOVER</h1>
+            <p class="hero-description">Sem deuses, sem dogmas.</p>
+        </div>
+    </header>
+
+    <!-- 4. Vitrine de Produtos -->
+    <main class="products-section" id="produtos">
+        
+        <div class="toolbar">
+            <div class="category-pills" id="categoryFilters">
+                <button class="pill-btn active" data-filter="all">Todos</button>
+                <button class="pill-btn" data-filter="camisetas">Camisetas</button>
+                <button class="pill-btn" data-filter="acessorios">Acessórios</button>
+            </div>
+
+            <div>
+                <select class="dropdown-sort" id="sortSelect" aria-label="Ordenar produtos">
+                    <option value="default">Ordenar por: Relevância</option>
+                    <option value="lowest">Menor Preço</option>
+                    <option value="highest">Maior Preço</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Produto 1 -->
+            <article class="product-card" data-category="camisetas" data-price="119.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/ca211de30321d5a83211ae660c0d336e.png" alt="DARWIN - Walking Fish" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">DARWIN - Walking Fish</h2>
+                    <div class="product-price">R$ 119,90</div>
+                    <div class="product-installments">6x de R$ 19,98 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 2 -->
+            <article class="product-card" data-category="camisetas" data-price="119.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/083251771d0f242f6cb8e4414443b079.png" alt="Sagan Slayer" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Sagan Slayer</h2>
+                    <div class="product-price">R$ 119,90</div>
+                    <div class="product-installments">6x de R$ 19,98 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 3 -->
+            <article class="product-card" data-category="camisetas" data-price="99.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/8f3f759308e3fd719fb9306d2bfa5eff.png" alt="Camiseta FCK GOD - Branca" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Camiseta FCK GOD - Branca</h2>
+                    <div class="product-price">R$ 99,90</div>
+                    <div class="product-installments">6x de R$ 16,65 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 4 -->
+            <article class="product-card" data-category="camisetas" data-price="99.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/05d32e65cc576286502d442e7f39c678.png" alt="Camiseta FCK GOD - Preta" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Camiseta FCK GOD - Preta</h2>
+                    <div class="product-price">R$ 99,90</div>
+                    <div class="product-installments">6x de R$ 16,65 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 5 -->
+            <article class="product-card" data-category="camisetas" data-price="119.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/eecbf94bcbf8215bd94d5e0a337e1694.png" alt="Camiseta St. Pauli Wasteland - Preta" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Camiseta St. Pauli "Wasteland"</h2>
+                    <div class="product-price">R$ 119,90</div>
+                    <div class="product-installments">6x de R$ 19,98 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 6 -->
+            <article class="product-card" data-category="camisetas" data-price="119.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/7bc007a3a580c0f8a64530b192291af8.png" alt="4 Horseman" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">4 Horseman</h2>
+                    <div class="product-price">R$ 119,90</div>
+                    <div class="product-installments">6x de R$ 19,98 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+
+            <!-- Produto 7 -->
+            <article class="product-card" data-category="camisetas" data-price="119.90">
+                <div class="product-image-container">
+                    <img src="https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/b3bd615e5da8883f1596e11fd44ab8d1.png" alt="Burning Church - NO GODS NO MASTERS" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <h2 class="product-title">Burning Church - NO GODS NO MASTERS</h2>
+                    <div class="product-price">R$ 119,90</div>
+                    <div class="product-installments">6x de R$ 19,98 sem juros</div>
+                    <a href="#" class="btn-card">Ver Detalhes</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- 5. Rodapé -->
+    <footer id="sobre">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 12px; display: inline-flex;">RELIGIOVER</div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 20px;">
+                    Sem deuses, sem dogmas.
+                </p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/religiover" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://tiktok.com/@religiover.oficial" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/@religiover" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://x.com/religiover" target="_blank" rel="noopener noreferrer" aria-label="X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Formas de Pagamento</h4>
+                <div class="payment-methods">
+                    <span class="badge-icon" title="Visa"><i class="fab fa-cc-visa"></i></span>
+                    <span class="badge-icon" title="Mastercard"><i class="fab fa-cc-mastercard"></i></span>
+                    <span class="badge-icon" title="Amex"><i class="fab fa-cc-amex"></i></span>
+                    <span class="badge-icon" title="Pix"><i class="fas fa-qrcode"></i></span>
+                    <span class="badge-icon" title="Boleto"><i class="fas fa-barcode"></i></span>
+                </div>
+
+                <h4 style="margin-top: 25px;">Segurança</h4>
+                <div class="payment-methods">
+                    <span class="badge-icon" title="Certificado SSL"><i class="fas fa-lock"></i></span>
+                    <span class="badge-icon" title="Google Safe"><i class="fab fa-google"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 RELIGIOVER - Todos os direitos reservados.</p>
+            <p>Fundado por <a href="https://unmoshe.github.io" target="_blank" rel="noopener noreferrer"><strong>unmoshe</strong></a></p>
+        </div>
+    </footer>
+
+    <!-- Script de Filtro e Proteções -->
+    <script>
+        // Filtro por categorias
+        const filterBtns = document.querySelectorAll('.pill-btn');
+        const cards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Ordenação de preços
+        const sortSelect = document.getElementById('sortSelect');
+        const grid = document.getElementById('productsGrid');
+
+        sortSelect.addEventListener('change', () => {
+            const val = sortSelect.value;
+            const items = Array.from(cards);
+
+            if (val === 'lowest') {
+                items.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
+            } else if (val === 'highest') {
+                items.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
+            }
+
+            items.forEach(item => grid.appendChild(item));
+        });
+
+        // Proteções mantidas
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey || event.metaKey) {
+                if (['a', 'c', 'x', 's', 'u'].includes(e.key.toLowerCase())) e.preventDefault();
+            }
+            if (e.key === 'F12') e.preventDefault();
+        });
+        document.addEventListener('copy', e => e.preventDefault());
+        document.addEventListener('cut', e => e.preventDefault());
+        document.addEventListener('paste', e => e.preventDefault());
+    </script>
+</body>
+</html>

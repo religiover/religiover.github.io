@@ -3,884 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StA | Somos todos Ateus</title>
+    <title>RELIGIOVER</title>
     
     <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
 
     <!-- PRÉ-CARREGAMENTO DE FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- ÍCONES (FONT AWESOME) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ÍCONES (FONT AWESOME 6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* =========================================
-           CONFIGURAÇÕES GERAIS E DE SEGURANÇA
-           ========================================= */
-
-        /* BLOQUEIO DE SELEÇÃO DE TEXTO PARA EVITAR CÓPIAS */
-        body {
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE/Edge */
-            user-select: none; /* Padrão */
+        /* CONFIGURAÇÕES GERAIS E ESTÉTICA ZINE UNDERGROUND */
+        body { 
+            -webkit-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
         }
 
-        /* CUSTOM SCROLLBAR (Para deixar o site mais vivo/interativo) */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00e676; /* Destaque verde ao rolar */
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #000000; border-left: 1px solid #333333; }
+        ::-webkit-scrollbar-thumb { background: #ffffff; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
 
-        /* VARIÁVEIS GERAIS (CORES E FONTES) */
         :root {
             --black-pure: #000000;
             --black-surface: #0a0a0a;
-            --black-card: #121212;
-            --gray-dark: #2a2a2a;
-            --gray-text: #a0a0a0;
+            --black-card: #0e0e0e;
+            --gray-border: #ffffff;
+            --gray-subtle: #2b2b2b;
+            --gray-medium: #666666;
+            --gray-light: #cccccc;
             --white-pure: #ffffff;
-            --green-gamer: #00e676; /* Verde claro estilo Play */
             
             --font-title: 'Oswald', sans-serif;
-            --font-body: 'Merriweather', serif;
+            --font-body: 'Space Mono', monospace;
             --font-ui: 'Montserrat', sans-serif;
         }
 
-        /* RESET BÁSICO DE MARGENS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body { 
+            background-color: var(--black-pure); 
+            color: var(--white-pure); 
+            font-family: var(--font-body); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
         }
 
-        html {
-            scroll-behavior: smooth; /* Rolagem suave ao clicar nos links */
+        section { scroll-margin-top: 80px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        h1, h2, h3, h4 { 
+            font-family: var(--font-title); 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 700;
         }
 
-        body {
-            background-color: var(--black-pure);
+        p { color: var(--gray-light); font-size: 1rem; }
+        
+        a { 
+            text-decoration: none; 
+            color: var(--white-pure); 
+            font-family: var(--font-ui); 
+            transition: all 0.2s ease-in-out; 
+        }
+
+        /* NAVBAR - ESTILO RECORTE BRUTALISTA */
+        .navbar {
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            background-color: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--white-pure); 
+            z-index: 1000; 
+            height: 80px; 
+            display: flex; 
+            align-items: center;
+        }
+        .nav-container { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-family: var(--font-title); 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            padding: 2px 10px;
+            background-color: var(--white-pure);
+            color: var(--black-pure);
+            border: 2px solid var(--white-pure);
+            transition: all 0.2s ease;
+        }
+        .logo:hover { 
+            background-color: var(--black-pure); 
+            color: var(--white-pure); 
+            box-shadow: 4px 4px 0px var(--white-pure);
+        }
+        .nav-links { list-style: none; display: flex; gap: 25px; }
+        .nav-links a { 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            position: relative; 
+            padding: 4px 8px;
+        }
+        .nav-links a:hover { 
+            background-color: var(--white-pure);
+            color: var(--black-pure);
+        }
+        .hamburger { display: none; cursor: pointer; font-size: 1.8rem; color: var(--white-pure); }
+
+        /* HERO - TEXTURA ZINE */
+        #inicio {
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+            background-color: var(--black-pure); 
+            background-image: url('rlgover.webp'); 
+            background-size: 55%; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            background-attachment: fixed; 
+            text-align: center; 
+        }
+        .hero-overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.98) 100%); 
+            z-index: 1; 
+        }
+        .hero-content { position: relative; z-index: 2; padding: 0 20px; }
+        .hero-content h1 { 
+            font-size: 5.5rem; 
+            line-height: 1;
+            margin-bottom: 15px; 
+            letter-spacing: 4px;
             color: var(--white-pure);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
+            text-shadow: 5px 5px 0px #222;
         }
-
-        /* Correção do problema de âncora: impede que o título suma debaixo da navbar */
-        section {
-            scroll-margin-top: 80px; 
-        }
-
-        /* CONTAINER PRINCIPAL PARA ALINHAMENTO */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* =========================================
-           TIPOGRAFIA
-           ========================================= */
-        h1, h2, h3, h4 {
-            font-family: var(--font-title);
+        .hero-content p { 
+            font-size: 1.3rem; 
+            color: var(--black-pure); 
+            background-color: var(--white-pure);
+            display: inline-block;
+            padding: 4px 15px;
+            font-family: var(--font-body); 
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .hero-social { 
+            margin-top: 25px; 
+            display: flex; 
+            gap: 15px; 
+            justify-content: center; 
+        }
+        .hero-social a { 
+            font-size: 1.5rem; 
+            color: var(--white-pure); 
+            border: 2px solid var(--white-pure);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .hero-social a:hover { 
+            background-color: var(--white-pure);
+            color: var(--black-pure);
+            transform: translate(-3px, -3px);
+            box-shadow: 5px 5px 0px var(--gray-medium);
         }
 
-        p {
-            color: var(--gray-text);
+        /* SOBRE NÓS */
+        #sobre { 
+            padding: 100px 0; 
+            background-color: var(--black-pure); 
+            border-top: 2px solid var(--white-pure); 
+        }
+        .sobre-wrapper { 
+            max-width: 850px; 
+            margin: 0 auto; 
+            border: 2px solid var(--white-pure);
+            padding: 40px;
+            background-color: var(--black-surface);
+            box-shadow: 8px 8px 0px var(--white-pure);
+        }
+        .section-title { 
+            font-size: 2.8rem; 
+            margin-bottom: 25px; 
+            display: inline-block;
+            background-color: var(--white-pure);
+            color: var(--black-pure);
+            padding: 4px 12px;
+            letter-spacing: 2px;
+        }
+
+        /* PAUTAS - CARDS BRUTALISTAS */
+        #pautas { 
+            padding: 100px 0; 
+            background-color: var(--black-surface); 
+            border-top: 2px solid var(--white-pure); 
+        }
+        .grids-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .card {
+            background-color: var(--black-pure); 
+            border: 2px solid var(--white-pure); 
+            padding: 40px 25px; 
+            text-align: left;
+            position: relative;
+            transition: all 0.2s ease; 
+            height: 100%; 
+            border-radius: 0; 
+        }
+        .card:hover { 
+            transform: translate(-4px, -4px); 
+            box-shadow: 8px 8px 0px var(--white-pure); 
+        }
+        .card-icon { 
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+            color: var(--white-pure); 
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--gray-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .manifesto-texto { 
+            max-width: 900px; 
+            margin: 0 auto 50px auto; 
+            border-left: 4px solid var(--white-pure);
+            padding-left: 20px;
             font-size: 1.1rem;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--white-pure);
-            font-family: var(--font-ui);
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+        /* EBOOKS */
+        #ebooks { 
+            padding: 100px 0; 
+            background-color: var(--black-pure); 
+            border-top: 2px solid var(--white-pure); 
+            border-bottom: 2px solid var(--white-pure); 
         }
-
-        a:hover {
-            color: var(--white-pure);
-            text-shadow: 0 0 8px rgba(255,255,255,0.5); /* Efeito interativo nos links */
-        }
-
-        /* =========================================
-           ESTRUTURAS VISUAIS DA PÁGINA
-           ========================================= */
-
-        /* NAVBAR FIXA E MODERNA */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px); /* Efeito de vidro moderno */
-            border-bottom: 1px solid var(--gray-dark);
-            z-index: 1000;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* ISOTIPO Logo StA */
-        .logo {
-            font-family: var(--font-title);
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 15px rgba(255,255,255,0.3);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-        }
-
-        /* Efeito de sublinhado interativo na navbar */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--green-gamer);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.8rem;
-        }
-
-        /* HERO SECTION (PRIMEIRA TELA) */
-        #inicio {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-color: var(--black-pure);
-            background-image: url('sta.png'); 
-            background-size: 70%; 
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed; 
-            text-align: center;
-            margin-top: 0; 
-        }
-
-        /* MÁSCARA ESCURA SOBRE O FUNDO DO HERO */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(10,10,10,0.85) 0%, rgba(0,0,0,0.98) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            color: var(--white-pure);
-            font-family: var(--font-ui);
-            font-weight: 300;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        /* Redes Sociais no Hero */
-        .hero-social {
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .hero-social a {
-            font-size: 2rem;
-            color: var(--white-pure);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .hero-social a:hover {
-            transform: scale(1.3) translateY(-5px);
-            color: var(--green-gamer);
-        }
-
-        /* SEÇÃO SOBRE NÓS */
-        #sobre {
-            padding: 120px 0;
-            background-color: var(--black-pure);
-            text-align: center;
-        }
-
-        .sobre-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--green-gamer); /* Trazendo a cor de destaque para os títulos */
-            bottom: -10px;
-            left: 25%;
-            transition: width 0.4s ease, left 0.4s ease;
-        }
-
-        .section-title:hover::after {
-            width: 100%;
-            left: 0;
-        }
-
-        /* SEÇÃO DE PAUTAS (Manifesto e Cards) */
-        #pautas {
-            padding: 100px 0;
-            background-color: var(--black-surface);
-            border-top: 1px solid var(--gray-dark);
-        }
-
-        /* GRID RESPONSIVO PARA CARDS (Pautas e Ebooks) */
-        .grids-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .card {
-            background-color: var(--black-pure);
-            border: 1px solid var(--gray-dark);
-            padding: 50px 30px;
-            text-align: center;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
-            height: 100%;
-            border-radius: 8px; /* Leve arredondamento para design mais fluido */
-        }
-
-        .card:hover {
-            transform: translateY(-15px);
-            border-color: var(--green-gamer); 
-            box-shadow: 0 15px 30px rgba(0, 230, 118, 0.1);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .card:hover .card-icon {
-            color: var(--green-gamer);
-            transform: scale(1.2);
-        }
-
-        .manifesto-texto {
-            max-width: 900px;
-            margin: 0 auto 60px auto;
-            text-align: justify;
-        }
-
-        /* SEÇÃO DE EBOOKS (LIVRARIA) */
-        #ebooks {
-            padding: 100px 0;
-            background-color: var(--black-pure);
-        }
-
         .ebook-card {
-            background-color: var(--black-card);
-            border: 1px solid var(--gray-dark);
-            display: flex;
+            background-color: var(--black-card); 
+            border: 2px solid var(--white-pure); 
+            display: flex; 
             flex-direction: column;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-            height: 100%;
-            border-radius: 8px;
-            overflow: hidden;
+            transition: all 0.2s ease; 
+            height: 100%; 
+            border-radius: 0; 
         }
-
-        .ebook-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            border-color: var(--gray-text);
+        .ebook-card:hover { 
+            transform: translate(-4px, -4px); 
+            box-shadow: 8px 8px 0px var(--white-pure); 
         }
-
-        .ebook-cover {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            border-bottom: 1px solid var(--gray-dark);
-            transition: transform 0.5s ease;
+        .ebook-cover { 
+            width: 100%; 
+            aspect-ratio: 3/4; 
+            object-fit: cover; 
+            border-bottom: 2px solid var(--white-pure); 
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.3s ease;
         }
-
         .ebook-card:hover .ebook-cover {
-            transform: scale(1.05); /* Efeito de zoom na capa ao focar */
+            filter: grayscale(0%) contrast(100%);
         }
-
-        .ebook-info {
-            padding: 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-            background-color: var(--black-card);
-            z-index: 2;
+        .ebook-info { 
+            padding: 20px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            flex-grow: 1; 
         }
-
-        /* BOTÃO DE COMPRA DA KIWIFY (ESTILO GAMER / PLAY) */
-        .btn-comprar {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: var(--green-gamer);
-            color: var(--black-pure);
-            font-family: var(--font-title);
-            text-transform: uppercase;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px; /* Espaço para o ícone */
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-comprar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-comprar:hover {
-            background-color: #00ff88;
-            transform: scale(1.05);
-            color: var(--black-pure);
-            box-shadow: 0 0 20px rgba(0, 230, 118, 0.6), 0 0 40px rgba(0, 230, 118, 0.2);
-        }
-
-        .btn-comprar:hover::before {
-            left: 100%;
-        }
-
-        /* SEÇÃO LOJA (Em Breve Melhorado com Glassmorphism e Animações) */
-        #loja {
-            padding: 150px 0;
-            background: radial-gradient(circle at center, #1a1a1a 0%, var(--black-surface) 100%);
-            text-align: center;
-            border-top: 1px solid var(--gray-dark);
-            border-bottom: 1px solid var(--gray-dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loja-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Cartão flutuante estilizado */
-        .loja-glass-card {
-            background: rgba(18, 18, 18, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 60px 40px;
-            max-width: 600px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .loja-glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0, 230, 118, 0.1);
-            border-color: rgba(0, 230, 118, 0.2);
-        }
-
-        .loja-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--white-pure);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); color: var(--green-gamer); text-shadow: 0 0 15px rgba(0,230,118,0.5); }
-        }
-
-        .em-breve-text {
-            font-size: 4rem;
-            font-family: var(--font-title);
-            text-transform: uppercase;
-            color: var(--white-pure);
-            letter-spacing: 5px;
+        .ebook-info h3 {
+            font-size: 1.1rem;
             margin-bottom: 15px;
-            position: relative;
+        }
+        
+        .btn-comprar {
+            padding: 14px; 
+            background-color: var(--white-pure); 
+            color: var(--black-pure);
+            font-family: var(--font-title); 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            letter-spacing: 1px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 10px; 
+            border: 2px solid var(--white-pure);
+            border-radius: 0;
+            transition: all 0.2s ease;
+        }
+        .btn-comprar:hover { 
+            background-color: var(--black-pure); 
+            color: var(--white-pure); 
+        }
+
+        /* FOOTER */
+        footer { 
+            background-color: var(--black-pure); 
+            padding: 60px 0 30px 0; 
+            text-align: center; 
+        }
+        .footer-brand h3 { 
+            font-size: 3rem; 
+            letter-spacing: 4px; 
             display: inline-block;
+            border-bottom: 3px solid var(--white-pure);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .footer-bottom { 
+            margin-top: 40px; 
+            border-top: 1px dashed var(--gray-medium); 
+            padding-top: 25px; 
+            font-size: 0.85rem; 
+            font-family: var(--font-body); 
+            color: var(--gray-medium);
+        }
+        .footer-bottom a {
+            color: var(--white-pure);
+            text-decoration: underline;
         }
 
-        /* Barra de loading interativa / futurista */
-        .loading-bar {
-            width: 100%;
-            height: 4px;
-            background-color: var(--black-pure);
-            border-radius: 2px;
-            margin-top: 30px;
-            position: relative;
-            overflow: hidden;
+        /* ANIMAÇÕES / SCROLL OBSERVER */
+        .fade-in { 
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
         }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .loading-fill {
-            position: absolute;
-            height: 100%;
-            background-color: var(--green-gamer);
-            box-shadow: 0 0 10px var(--green-gamer);
-            animation: loadingIndeterminate 2.5s infinite ease-in-out;
-        }
-
-        @keyframes loadingIndeterminate {
-            0% { width: 0%; left: 0; }
-            50% { width: 100%; left: 0; }
-            100% { width: 0%; left: 100%; }
-        }
-
-        /* FOOTER (RODAPÉ) */
-        footer {
-            background-color: var(--black-pure);
-            padding: 60px 0 20px 0;
-            text-align: center;
-        }
-
-        .footer-brand h3 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-        }
-
-        .footer-bottom {
-            margin-top: 40px;
-            border-top: 1px solid var(--gray-dark);
-            padding-top: 20px;
-            font-size: 0.85rem;
-            font-family: var(--font-ui);
-        }
-
-        /* CLASSES UTILITÁRIAS (ANIMAÇÕES GERAIS) */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* =========================================
-           MEDIA QUERIES (RESPONSIVIDADE MOBILE)
-           ========================================= */
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            
-            .container {
-                padding: 0 15px;
+            .container { padding: 0 15px; }
+            .sobre-wrapper { padding: 20px; box-shadow: 5px 5px 0px var(--white-pure); }
+            p { font-size: 0.9rem !important; }
+            .section-title { font-size: 2rem; }
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 80px; 
+                left: 0; 
+                width: 100%; 
+                background-color: #000000; 
+                border-bottom: 2px solid var(--white-pure);
+                padding: 20px 0; 
+                text-align: center; 
             }
-
-            p {
-                font-size: 0.95rem !important; 
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 20px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.95);
-                padding: 20px 0;
-                text-align: center;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            .hero-content p {
-                font-size: 1.1rem !important;
-            }
-
-            /* GRIDS 3x1 NO MOBILE: Forçando o layout lado a lado */
-            .grids-3 {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-                margin-top: 30px;
-            }
-
-            /* Ajustes Finos nos Cards de PAUTAS para caber no 3x1 */
-            .card {
-                padding: 15px 8px;
-            }
-            .card-icon {
-                font-size: 1.8rem;
-                margin-bottom: 10px;
-            }
-            .card h3 {
-                font-size: 0.85rem;
-                letter-spacing: 0;
-            }
-            .card p {
-                font-size: 0.7rem !important;
-                margin-top: 8px;
-                line-height: 1.3;
-            }
-
-            /* Ajustes Finos nos Cards de EBOOKS para caber no 3x1 */
-            .ebook-info {
-                padding: 15px 8px;
-            }
-            .ebook-info h3 {
-                font-size: 0.75rem;
-                margin-bottom: 8px;
-                letter-spacing: 0;
-            }
-            .btn-comprar {
-                padding: 10px 4px;
-                font-size: 0.7rem;
-                margin-top: auto;
-            }
-
-            /* Loja Mobile */
-            .em-breve-text {
-                font-size: 2.2rem;
-            }
-            .loja-icon {
-                font-size: 3rem;
-            }
-            .loja-glass-card {
-                padding: 40px 20px;
-            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .hero-content p { font-size: 0.95rem !important; }
+            .grids-3 { grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
+            .card { padding: 25px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#inicio" class="logo">StA</a>
+            <a href="#inicio" class="logo">RELIGIOVER</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#pautas">Pautas</a></li>
                 <li><a href="#ebooks">Ebooks</a></li>
-                <li><a href="#loja">Loja</a></li>
+                <li><a href="p/loja/index.html">Loja</a></li>
             </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
 
-    <!-- SEÇÃO HERO (BOAS VINDAS) -->
     <header id="inicio">
         <div class="hero-overlay"></div>
         <div class="container hero-content fade-in">
-            <h1>Somos Todos Ateus</h1>
-            <p>Sem deuses, sem dogmas.</p>
+            <h1>RELIGIOVER</h1>
+            <div>
+                <p>Sem deuses. Sem dogmas.</p>
+            </div>
             <div class="hero-social">
-                <a href="https://instagram.com/somostodosateus" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@somostodosateus" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://tiktok.com/@somostodosateus" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://instagram.com/religiover" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@religiover.oficial" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com/@religiover" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://x.com/religiover" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- SEÇÃO SOBRE NÓS -->
     <section id="sobre">
-        <div class="container fade-in sobre-wrapper">
-            <h2 class="section-title">Sobre nós</h2>
-            <p style="margin-bottom: 20px;">
-                Somos uma organização ateísta. Sim, pasmem: uma <strong>guerrilha de hereges</strong> dedicada a produzir conteúdo crítico e cirurgicamente sarcástico sobre religião para a internet. 
-            </p>
-            <p style="margin-bottom: 20px;">
-                Nossa tática de combate envolve um pouco de tudo. Disparamos desde <strong>memes imbecis</strong> — minuciosamente calculados para você arruinar o almoço de domingo da família — até notícias super embasadas que esfregam na sua cara a distopia da nossa amada nação, expondo o "amor cristão" na sua essência. E detalhe: temos <strong>alergia profunda a qualquer dogma</strong>, seja ele adorado no altar ou idolatrado no palanque. Nosso único lado é o da lógica.
-            </p>
-            <p style="margin-bottom: 20px;">
-                Nosso objetivo final é te armar para essa revolução intelectual. Entregamos armas bem mais chatas e letais, tipo a <strong>"razão" e o "ceticismo"</strong>. O arsenal perfeito para você tentar o verdadeiro milagre: convencer aquele seu tio fanático de que a Terra não é plana e que o político dele não é o Messias. Boa sorte com essa missão suicida, a propósito.
-            </p>
-            <p>
-                E como toda revolução precisa pagar seus boletos (afinal, o capitalismo venceu), fomos além do ativismo de trincheira. Oferecemos <strong>obras e materiais de estudo estratégicos</strong> e, muito em breve, lançaremos nossa loja oficial. Roupas e acessórios exclusivos para quem tem o orgulho — e a absoluta audácia — de <strong>pensar livre</strong>.
-            </p>
+        <div class="container fade-in">
+            <div class="sobre-wrapper">
+                <h2 class="section-title">Sobre Nós</h2>
+                <p style="margin-bottom: 20px;">
+                    O <strong>RELIGIOVER</strong> é uma organização ateísta. Uma <strong>guerrilha de livre-pensadores e hereges</strong> dedicada a produzir sátira, desconstrução e crítica cirúrgica contra todo tipo de dogma religioso na internet. 
+                </p>
+                <p style="margin-bottom: 20px;">
+                    Nossa trincheira reúne colagens, fanzine visual e <strong>memes ácidos</strong> — calibrados para abalar certezas cegas —, além de análises documentadas que expõem a hipocrisia das bancadas fundamentalistas e o verdadeiro custo da fé cega. 
+                </p>
+                <p style="margin-bottom: 20px;">
+                    O objetivo é municiar sua mente com instrumentos racionais: <strong>pensamento crítico, ceticismo empírico e liberdade irrestrita de questionar</strong>.
+                </p>
+                <p>
+                    Para manter a estrutura independente ativa, disponibilizamos nossas <strong>obras e materiais de estudo estratégicos</strong> e a linha oficial de estampas na nossa loja.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- SEÇÃO DE PAUTAS E MANIFESTO -->
     <section id="pautas">
         <div class="container">
-            <div class="fade-in text-center" style="text-align: center; margin-bottom: 40px;">
+            <div class="fade-in" style="text-align: center; margin-bottom: 40px;">
                 <h2 class="section-title">Nossas Pautas</h2>
             </div>
-            
             <div class="manifesto-texto fade-in">
-                <p><strong>O Estado é laico.</strong> Todos os dias, assistimos sistematicamente à tentativa de aparelhamento das instituições por bancadas que buscam impor dogmas. Acreditamos que a fé é uma prerrogativa íntima, sendo inaceitável o seu uso como instrumento de coerção política. Nosso norte é a construção de uma sociedade onde a integridade intelectual e a liberdade individual sejam os únicos parâmetros inquestionáveis.</p>
+                <p><strong>O ESTADO É LAICO.</strong> Assistimos diariamente a investidas sistemáticas para aparelhar as liberdades civis através de dogmas. A fé individual nunca deve ser instrumento de coerção política ou opressão social.</p>
             </div>
-
-            <!-- GRID COM OS 3 PILARES -->
             <div class="grids-3">
                 <div class="card fade-in">
-                    <i class="fas fa-face-flushed card-icon"></i>
+                    <i class="fas fa-skull card-icon"></i>
                     <h3>Absurdos</h3>
-                    <p style="margin-top: 15px;">Casos documentados da barbárie e intolerância cometidas em nome do "amor" divino.</p>
+                    <p style="margin-top: 15px;">Documentação crua de abusos, estelionato da fé e intolerâncias cometidas sob pretexto sagrado.</p>
                 </div>
                 <div class="card fade-in">
-                    <i class="fas fa-book-open card-icon"></i>
+                    <i class="fas fa-atom card-icon"></i>
                     <h3>Didático</h3>
-                    <p style="margin-top: 15px;">Doses de biologia evolutiva para esmagar o negacionismo utilizando apenas fatos.</p>
+                    <p style="margin-top: 15px;">Razão pura, evolução biológica e ciência prática para pulverizar o criacionismo sem rodeios.</p>
                 </div>
                 <div class="card fade-in">
                     <i class="fas fa-newspaper card-icon"></i>
                     <h3>Matérias</h3>
-                    <p style="margin-top: 15px;">A corrupção nua e crua dos "santos" que lucram enquanto tentam legislar sobre sua vida.</p>
+                    <p style="margin-top: 15px;">Investigações sobre os impérios isentos de impostos que lucram legislando sobre a sua vida.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO DE CATÁLOGO DE EBOOKS -->
     <section id="ebooks">
         <div class="container">
-            <div class="fade-in text-center" style="text-align: center; margin-bottom: 40px;">
+            <div class="fade-in" style="text-align: center; margin-bottom: 40px;">
                 <h2 class="section-title">Catálogo de Ebooks</h2>
-                <p style="margin-top: 10px;">Obras estratégicas para o desenvolvimento intelectual e o embate cético.</p>
+                <p style="margin-top: 10px; text-transform: uppercase;">Publicações estratégicas para o desenvolvimento cético.</p>
             </div>
-
-            <!-- GRID DOS EBOOKS (Substituídos pelos 3 solicitados) -->
-            <div class="grids-3">
-                
-                <!-- LIVRO 1 -->
-                <div class="ebook-card fade-in">
-                    <div style="overflow: hidden;">
-                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/cristianismo-s.a_02e4355a25114b40bc110ca269c1536f.jpeg" alt="Cristianismo S.A." class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=CRISTIANISMO+S.A.'">
-                    </div>
-                    <div class="ebook-info">
-                        <h3>CRISTIANISMO S.A.</h3>
-                        <a href="https://pay.kiwify.com.br/Dq0bUT7" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
-                    </div>
-                </div>
-
-                <!-- LIVRO 2 -->
-                <div class="ebook-card fade-in">
-                    <div style="overflow: hidden;">
-                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/mafia-do-dizimo_e6e3e30141d84a22a335a4632bea7aca.jpeg" alt="A Máfia do Dízimo" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=MÁFIA+DO+DÍZIMO'">
-                    </div>
-                    <div class="ebook-info">
-                        <h3>A MÁFIA DO DÍZIMO</h3>
-                        <a href="https://pay.kiwify.com.br/ZLMUDSc" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
-                    </div>
-                </div>
-
-                <!-- LIVRO 3 -->
-                <div class="ebook-card fade-in">
-                    <div style="overflow: hidden;">
-                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/evangelistao_308de3a440bd40b4941f566f86d95672.jpeg" alt="Sobrevivendo ao Evangelistão" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/141414/a0a0a0?text=SOBREVIVENDO+AO+EVANGELISTÃO'">
-                    </div>
-                    <div class="ebook-info">
-                        <h3>SOBREVIVENDO AO EVANGELISTÃO</h3>
-                        <a href="https://pay.kiwify.com.br/ipb0t3N" target="_blank" class="btn-comprar"><i class="fas fa-play"></i> Comprar</a>
-                    </div>
-                </div>
-
-            </div> <!-- Fechamento da div grids-3 -->
-        </div> <!-- Fechamento do container principal de ebooks -->
+            <div class="grids-3" id="ebooks-grid"></div> 
+        </div> 
     </section>
 
-    <!-- SEÇÃO LOJA FÍSICA / MERCH (Atualizada para mais interativa) -->
-    <section id="loja">
-        <div class="container loja-container fade-in">
-            <div class="loja-glass-card">
-                <i class="fas fa-lock loja-icon"></i>
-                <h2 class="em-breve-text">Em Breve</h2>
-                <p style="margin-top: 10px; font-size: 1.1rem; color: var(--gray-text);">
-                    Nossa loja oficial está sendo forjada. Roupas, acessórios e manifesto para vestir o seu ceticismo.
-                </p>
-                <div class="loading-bar">
-                    <div class="loading-fill"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ DA PÁGINA -->
     <footer>
         <div class="container fade-in">
             <div class="footer-brand">
-                <h3>StA</h3>
-                <p>Sem deuses, sem dogmas.</p>
+                <h3>RELIGIOVER</h3>
+                <p>Sem deuses. Sem dogmas.</p>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Somos todos Ateus. Todos os direitos reservados.</p>
-                <p>Idealizado por <a href="https://unmoshe.github.io" target="_blank" rel="noopener noreferrer"><strong>unmoshe</strong></a></p>
+                <p>&copy; 2026 RELIGIOVER. Todos os direitos reservados.</p>
+                <p style="margin-top: 8px;">Criado por <a href="https://unmoshe.github.io" target="_blank" rel="noopener noreferrer"><strong>unmoshe</strong></a></p>
             </div>
         </div>
     </footer>
 
-    <!-- SCRIPTS DE LÓGICA E INTERAÇÃO -->
     <script>
-        // 1. LÓGICA DO MENU MOBILE (Hamburger)
+        // MENU MOBILE
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // 2. Fechar menu mobile automaticamente ao clicar em um link
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if(navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
+            link.addEventListener('click', () => { 
+                if(navLinks.classList.contains('active')) navLinks.classList.remove('active'); 
             });
         });
 
-        // 3. LÓGICA DE FADE-IN (Aparecer ao rolar a página com animação mais fluida)
+        // TRANSIÇÕES DE SCROLL (OBSERVER)
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -40px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+            entries.forEach(entry => { 
+                if (!entry.isIntersecting) return; 
+                entry.target.classList.add('visible'); 
+                observer.unobserve(entry.target); 
             });
         }, appearOptions);
-
         faders.forEach(fader => appearOnScroll.observe(fader));
 
-        // =========================================================
-        // SISTEMA DE BLOQUEIO DE AÇÕES DO USUÁRIO (ANTIFURTO DE CÓDIGO)
-        // =========================================================
+        // LISTAGEM DOS EBOOKS
+        const ebooksData = [
+            { titulo: "CRISTIANISMO S.A.", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/cristianismo-s.a_02e4355a25114b40bc110ca269c1536f.jpeg", link: "https://pay.kiwify.com.br/Dq0bUT7" },
+            { titulo: "A MÁFIA DO DÍZIMO", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/mafia-do-dizimo_e6e3e30141d84a22a335a4632bea7aca.jpeg", link: "https://pay.kiwify.com.br/ZLMUDSc" },
+            { titulo: "SOBREVIVENDO AO EVANGELISTÃO", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/evangelistao_308de3a440bd40b4941f566f86d95672.jpeg", link: "https://pay.kiwify.com.br/ipb0t3N" }
+        ];
 
-        // 1. Bloqueia o clique do botão direito (Context Menu)
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
+        const ebooksGrid = document.getElementById('ebooks-grid');
+        ebooksData.forEach(ebook => {
+            const cardHTML = `
+                <div class="ebook-card fade-in">
+                    <div style="overflow: hidden; border-bottom: 2px solid #fff;">
+                        <img src="${ebook.capa}" alt="${ebook.titulo}" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/000000/ffffff?text=Capa+Indisponível'">
+                    </div>
+                    <div class="ebook-info">
+                        <h3>${ebook.titulo}</h3>
+                        <a href="${ebook.link}" target="_blank" class="btn-comprar"><i class="fas fa-arrow-right"></i> Adquirir</a>
+                    </div>
+                </div>`;
+            ebooksGrid.insertAdjacentHTML('beforeend', cardHTML);
         });
 
-        // 2. Intercepta e bloqueia atalhos de teclado específicos (F12, Inspecionar, Copiar)
-        document.addEventListener('keydown', function(event) {
+        // PROTEÇÕES DO SITE
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
             if (event.ctrlKey || event.metaKey) {
-                const key = event.key.toLowerCase();
-                if (['a', 'c', 'x', 's', 'u'].includes(key)) {
-                    event.preventDefault();
-                }
+                if (['a', 'c', 'x', 's', 'u'].includes(event.key.toLowerCase())) event.preventDefault();
             }
-            if (event.key === 'F12') {
-                event.preventDefault();
-            }
+            if (event.key === 'F12') event.preventDefault();
         });
-
-        // 3. Bloqueia eventos nativos de área de transferência
         document.addEventListener('copy', event => event.preventDefault());
         document.addEventListener('cut', event => event.preventDefault());
         document.addEventListener('paste', event => event.preventDefault());
-
     </script>
 </body>
 </html>
