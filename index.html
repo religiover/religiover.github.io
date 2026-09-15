@@ -382,7 +382,7 @@
 
     <nav class="navbar">
         <div class="container nav-container">
-            <a class="logo">RELIGIOVER</a>
+            <a href="#inicio" class="logo">RELIGIOVER</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#sobre">Sobre Nós</a></li>
@@ -458,13 +458,49 @@
         </div>
     </section>
 
+    <!-- SEÇÃO DE EBOOKS COM OS CARDS DIRETAMENTE NO HTML -->
     <section id="ebooks">
         <div class="container">
             <div class="fade-in" style="text-align: center; margin-bottom: 40px;">
                 <h2 class="section-title">Catálogo de Ebooks</h2>
                 <p style="margin-top: 10px; text-transform: uppercase;">Publicações estratégicas para o desenvolvimento cético.</p>
             </div>
-            <div class="grids-3" id="ebooks-grid"></div> 
+            <div class="grids-3" id="ebooks-grid">
+
+                <!-- Ebook 1 -->
+                <div class="ebook-card fade-in">
+                    <div style="overflow: hidden; border-bottom: 2px solid #fff;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/cristianismo-s.a_02e4355a25114b40bc110ca269c1536f.jpeg" alt="CRISTIANISMO S.A." class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/000000/ffffff?text=Capa+Indisponível'">
+                    </div>
+                    <div class="ebook-info">
+                        <h3>CRISTIANISMO S.A.</h3>
+                        <a href="https://pay.kiwify.com.br/Dq0bUT7" target="_blank" class="btn-comprar"><i class="fas fa-arrow-right"></i> Adquirir</a>
+                    </div>
+                </div>
+
+                <!-- Ebook 2 -->
+                <div class="ebook-card fade-in">
+                    <div style="overflow: hidden; border-bottom: 2px solid #fff;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/mafia-do-dizimo_e6e3e30141d84a22a335a4632bea7aca.jpeg" alt="A MÁFIA DO DÍZIMO" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/000000/ffffff?text=Capa+Indisponível'">
+                    </div>
+                    <div class="ebook-info">
+                        <h3>A MÁFIA DO DÍZIMO</h3>
+                        <a href="https://pay.kiwify.com.br/ZLMUDSc" target="_blank" class="btn-comprar"><i class="fas fa-arrow-right"></i> Adquirir</a>
+                    </div>
+                </div>
+
+                <!-- Ebook 3 -->
+                <div class="ebook-card fade-in">
+                    <div style="overflow: hidden; border-bottom: 2px solid #fff;">
+                        <img src="https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/evangelistao_308de3a440bd40b4941f566f86d95672.jpeg" alt="SOBREVIVENDO AO EVANGELISTÃO" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/000000/ffffff?text=Capa+Indisponível'">
+                    </div>
+                    <div class="ebook-info">
+                        <h3>SOBREVIVENDO AO EVANGELISTÃO</h3>
+                        <a href="https://pay.kiwify.com.br/ipb0t3N" target="_blank" class="btn-comprar"><i class="fas fa-arrow-right"></i> Adquirir</a>
+                    </div>
+                </div>
+
+            </div> 
         </div> 
     </section>
 
@@ -503,28 +539,6 @@
             });
         }, appearOptions);
         faders.forEach(fader => appearOnScroll.observe(fader));
-
-        // LISTAGEM DOS EBOOKS
-        const ebooksData = [
-            { titulo: "CRISTIANISMO S.A.", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/cristianismo-s.a_02e4355a25114b40bc110ca269c1536f.jpeg", link: "https://pay.kiwify.com.br/Dq0bUT7" },
-            { titulo: "A MÁFIA DO DÍZIMO", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/mafia-do-dizimo_e6e3e30141d84a22a335a4632bea7aca.jpeg", link: "https://pay.kiwify.com.br/ZLMUDSc" },
-            { titulo: "SOBREVIVENDO AO EVANGELISTÃO", capa: "https://aws-assets.kiwify.com.br/iWRlDEE5hlcksuA/evangelistao_308de3a440bd40b4941f566f86d95672.jpeg", link: "https://pay.kiwify.com.br/ipb0t3N" }
-        ];
-
-        const ebooksGrid = document.getElementById('ebooks-grid');
-        ebooksData.forEach(ebook => {
-            const cardHTML = `
-                <div class="ebook-card fade-in">
-                    <div style="overflow: hidden; border-bottom: 2px solid #fff;">
-                        <img src="${ebook.capa}" alt="${ebook.titulo}" class="ebook-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x800/000000/ffffff?text=Capa+Indisponível'">
-                    </div>
-                    <div class="ebook-info">
-                        <h3>${ebook.titulo}</h3>
-                        <a href="${ebook.link}" target="_blank" class="btn-comprar"><i class="fas fa-arrow-right"></i> Adquirir</a>
-                    </div>
-                </div>`;
-            ebooksGrid.insertAdjacentHTML('beforeend', cardHTML);
-        });
 
         // PROTEÇÕES DO SITE
         document.addEventListener('contextmenu', event => event.preventDefault());
